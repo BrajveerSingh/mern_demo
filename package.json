@@ -1,0 +1,31 @@
+{
+  "name": "mern_demo",
+  "version": "1.0.0",
+  "description": "eCommerce application built with MERN stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrajveerSingh/mern_demo.git"
+  },
+  "author": "Brajveer Singh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BrajveerSingh/mern_demo/issues"
+  },
+  "homepage": "https://github.com/BrajveerSingh/mern_demo#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.0"
+  }
+}
