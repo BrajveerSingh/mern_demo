@@ -13,7 +13,7 @@ const orderSchema = new mongoose.Schema({
                 required: true
             },
             qty: {
-                type: Numer,
+                type: Number,
                 required: true
             },
             Image: {
@@ -107,3 +107,7 @@ const orderSchema = new mongoose.Schema({
 {
     timestamps: true
 });
+
+const Order = mongoose.model("Order", orderSchema);
+
+export default Order;
