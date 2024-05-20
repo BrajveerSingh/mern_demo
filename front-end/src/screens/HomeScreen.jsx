@@ -5,6 +5,7 @@ import Product from '../components/Product';
 // import axios from 'axios';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
 import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 
 const HomeScreen = () => {
@@ -34,7 +35,11 @@ const HomeScreen = () => {
         <>
             { isLoading ? (
                 <Loader />
-            ) : error ? (<div>{ error?.data?.message || error.error }</div>) : (
+            ) : error ? (
+                            <Message variant='danger'>
+                                { error?.data?.message || error.error }
+                            </Message>
+                        ) : (
                 <>
                     <h1>Latest Products</h1>
                     <Row>
