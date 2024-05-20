@@ -6,6 +6,7 @@ import Rating from "../components/Rating";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
+import Loader from "../components/Loader";
 
 
 const ProductScreen = () => {
@@ -85,7 +86,7 @@ const ProductScreen = () => {
     return (
         <>
             { isLoading ? (
-                <h2>Loading... </h2>
+                <Loader />
             ) : error ? (<div>{ error?.data?.message || error.error }</div>) : (
                 <>
                     <Link className="btn btn-light my-3" to="/">
