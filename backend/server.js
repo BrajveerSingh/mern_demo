@@ -4,6 +4,7 @@ import connectDB from './config/db.js';
 import productRoutes from '../backend/routes/productRoutes.js';
 import userRoutes from '../backend/routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -17,6 +18,9 @@ const app = express();
 //Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//cookie-parser middleware
+app.use(cookieParser());  //page doesn't load if we use cookieParser instead of cookieParser()
 
 app.get("/", (request, response) => {
     response.send("API is running...");
