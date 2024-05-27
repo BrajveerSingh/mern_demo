@@ -1,6 +1,5 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import Order from "../models/OrderModel.js"
-import User from "../models/UserModel.js";
 
 // @desc   Create a new order
 // @route  POST /api/orders
@@ -14,7 +13,9 @@ const addOrderItems = asyncHandler(async (req, res) => {
         taxPrice,
         shippingPrice,
         totalPrice
-    } = rq.body;
+    } = req.body;
+
+    
     if(orderItems && orderItems.length === 0){
         res.status(400);
         throw new Error('No order items');
@@ -28,13 +29,17 @@ const addOrderItems = asyncHandler(async (req, res) => {
             user: req.user._id,
             shippingAddress,
             paymentMethod,
-            itemPrice,
+            itemsPrice,
             taxPrice,
             shippingPrice,
             totalPrice
         });
-        const createdOrder = order.save();
+
+        
+        const createdOrder = await order.save();
+
         res.status(201).json(createdOrder);
+
     }
 });
 
