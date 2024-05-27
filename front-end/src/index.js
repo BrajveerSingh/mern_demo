@@ -50,7 +50,6 @@ root.render(
       <PayPalScriptProvider deferLoading={true}>
         <RouterProvider router={router} />
       </PayPalScriptProvider>
-      {/* <RouterProvider router={router} /> */}
     </Provider>
   </React.StrictMode>
 );
