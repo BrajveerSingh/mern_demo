@@ -69,7 +69,6 @@ const ProductEditScreen = () => {
         const formData = new FormData();
         formData.append('image',e.target.files[0]);
         try {
-            console.log(formData);
             const res = await uploadProductImage(formData).unwrap();
             toast.success(res.message);
             setImage(res.image);
