@@ -120,10 +120,10 @@ const ProfileScreen = () => {
                                         <td>{order.createdAt.substring(0, 10)}</td>
                                         <td>${order.totalPRice}</td>
                                         <td>
-                                            { order.isPaid ? (order.paidAt.substring(1,10)) : (<FaTimes style={{color: 'red'}} />) }
+                                            { order.isPaid ? (order.paidAt.substring(0,10)) : (<FaTimes style={{color: 'red'}} />) }
                                         </td>
                                         <td>
-                                            { order.isDelivered ? (order.deliverAt.substring(1,10)) : (<FaTimes style={{color: 'red'}} />) }
+                                            { order.isDelivered ? (order.deliverAt.substring(0,10)) : (<FaTimes style={{color: 'red'}} />) }
                                         </td>
                                         <td>
                                             <LinkContainer to={`/order/${order._id}`}>
