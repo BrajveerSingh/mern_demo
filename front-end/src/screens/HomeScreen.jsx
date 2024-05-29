@@ -23,11 +23,9 @@ const HomeScreen = () => {
 
     // const { data: products, isLoading, error } = useGetProductsQuery();
 
-    const { pageNumber } = useParams();
+    const { keyword, pageNumber } = useParams();
 
-    console.log("pageNumber=" + pageNumber);
-
-    const { data, isLoading, error } = useGetProductsQuery({ pageNumber });
+    const { data, isLoading, error } = useGetProductsQuery({ keyword, pageNumber });
 
     return (
         // <>
@@ -57,7 +55,7 @@ const HomeScreen = () => {
                             </Col>
                         ))}
                     </Row>
-                    <Paginate pages={data.pages} page={data.page} />
+                    <Paginate pages={data.pages} page={data.page} keyword={keyword ? keyword : ''} />
                 </>
             ) }
         </>
