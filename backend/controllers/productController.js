@@ -1,12 +1,27 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import Product from "../models/ProductModel.js";
 
-// @desc   Fetch all products
+// // @desc   Fetch all products
+// // @route  GET /api/products
+// // @access Public
+// const getProducts = asyncHandler(async (req, res) => {
+//     const products = await Product.find({});
+//     res.json(products);
+// });
+
+// @desc   Fetch products using pagination
 // @route  GET /api/products
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    res.json(products);
+    const pageSize = 2;
+    const page = Number(req.query.pageNumber) || 1;
+    const count = await Product.countDocuments();
+
+    const products = await Product.find({})
+                                  .limit(pageSize)
+                                  .skip(pageSize * (page - 1));
+    
+    res.json({ products, page, pages: Math.ceil(count/pageSize) });
 });
 
 // @desc   Fetch a product
