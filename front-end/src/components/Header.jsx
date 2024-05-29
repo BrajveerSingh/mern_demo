@@ -40,7 +40,7 @@ const Header = () => {
                     <Navbar.Toggle area-contols="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" />
                     <Nav className='ms-auto'>
-                        <SearchBox />
+                        <SearchBox />   
                         <LinkContainer to='/cart'>
                             <Nav.Link >
                                 <FaShoppingCart />
