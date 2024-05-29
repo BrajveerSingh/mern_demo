@@ -25,11 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 //cookie-parser middleware
 app.use(cookieParser());  //page doesn't load if we use cookieParser instead of cookieParser()
 
-app.get("/", (request, response) => {
-    response.send("API is running...");
-});
-
-
 app.use("/api/products", productRoutes);
 
 app.use('/api/users', userRoutes);
@@ -42,6 +37,20 @@ app.get('/api/config/paypal', (req,res) => res.send({ clientId: process.env.PAYP
 
 const __dirname = path.resolve(); // set __dirname to current directory
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+if (process.env.NODE_ENV === 'production') {
+    //set react build folder
+    app.use(express.static(path.join(__dirname, '/front-end/build')));
+
+    //any route that is not api will be redirected to index.html
+    app.get('*', (req, res) => 
+        res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'))
+    );
+} else {
+    app.get("/", (request, response) => {
+        response.send("API is running...");
+    });
+}
 
 app.use(notFound);
 app.use(errorHandler);
