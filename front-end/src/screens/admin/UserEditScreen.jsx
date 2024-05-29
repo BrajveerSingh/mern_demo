@@ -33,7 +33,6 @@ const UserEditScreen = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        console.log("userID=" + JSON.stringify({ userId, name, email, isAdmin }));
         const result = await updateUser({ userId, name, email, isAdmin });
         if(result.error){
             toast.error(result.error);
