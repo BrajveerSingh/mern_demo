@@ -3,13 +3,6 @@ import { apiSlice } from "./apiSlice";
 
 export const productsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        // getProducts: builder.query({
-        //     query: () => ({
-        //         url: PRODUCTS_URL
-        //     }),
-        //     providesTags: ['Product'],  //To avoid page refresh manually
-        //     keepUnusedDataFor: 5
-        // }),
         getProducts: builder.query({
             query: ({ keyword, pageNumber }) => ({
                 url: PRODUCTS_URL,
@@ -63,6 +56,12 @@ export const productsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Product']
         }),
+        getTopRatedProducts: builder.query({
+            query: () => ({
+                url: `${PRODUCTS_URL}/top`
+            }),
+            keepUnusedDataFor: 5
+        }),
     }) 
 });
 
@@ -73,5 +72,6 @@ export const {
     useUpdateProductMutation,
     useUploadProductImageMutation,
     useDeleteProductMutation,
-    useCreateReviewMutation
+    useCreateReviewMutation,
+    useGetTopRatedProductsQuery
 } = productsApiSlice;
